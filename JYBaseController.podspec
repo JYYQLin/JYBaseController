@@ -10,6 +10,6 @@ Pod::Spec.new do |spec|
   	spec.source_files  = "JYBaseController/*.{h,m,swift}"
 	spec.swift_versions = ['5.0']
 
-	spec.dependency "JYScreen", :git => 'https://github.com/JYYQLin/JYScreen.git'
-	spec.dependency "JYExtension", :git => 'https://github.com/JYYQLin/JYExtension.git'
+	spec.dependency "JYScreen"
+	spec.dependency "JYExtension"
 end
