@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JYScreen
 
 open class JY_BaseController: UIViewController {
 
