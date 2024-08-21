@@ -1,5 +1,5 @@
 //
-//  JY_BaseController.swift
+//  JY_Base_Controller.swift
 //  JYBaseController
 //
 //  Created by Jing on 2024/8/9.
@@ -8,7 +8,7 @@
 import UIKit
 import JYScreen
 
-open class JY_BaseController: UIViewController {
+open class JY_Base_Controller: UIViewController {
 
     //  状态栏颜色
     public override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -23,7 +23,8 @@ open class JY_BaseController: UIViewController {
             yq_controller_status_change()
         }
     }
-    
+
+    public lazy var yq_scale: CGFloat = 1.0
     public lazy var yq_is_push: Bool = true
     public lazy var yq_is_tabBar_child: Bool = false
     
@@ -52,7 +53,7 @@ open class JY_BaseController: UIViewController {
     }
 }
 
-extension JY_BaseController {
+extension JY_Base_Controller {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,14 +78,14 @@ extension JY_BaseController {
     }
 }
 
-extension JY_BaseController {
+extension JY_Base_Controller {
     
     @objc dynamic open func yq_retry_request_click() {
         yq_controller_status = .yq_first_request
     }
 }
 
-extension JY_BaseController {
+extension JY_Base_Controller {
     @objc dynamic open func yq_setInterface() {
         
         view.addSubview(yq_background_content_view)
@@ -102,6 +103,7 @@ extension JY_BaseController {
     @objc dynamic open func yq_setSubviewsFrame() {
         
         let scale = view.frame.yq_scale_to_width(originalWidth: 375)
+        yq_scale = scale
         
         yq_background_content_view.frame = view.bounds
         yq_content_view.frame = view.bounds
@@ -112,7 +114,7 @@ extension JY_BaseController {
         yq_status_view.frame = view.bounds
         yq_status_view.yq_set(scale: scale)
         
-        yq_background_content_view.backgroundColor = JY_BaseController.yq_background_color()
+        yq_background_content_view.backgroundColor = JY_Base_Controller.yq_background_color()
         
         yq_left_tap_view.frame = CGRect(x: 0, y: 0, width: 15 * scale, height: view.frame.height)
         
@@ -128,7 +130,7 @@ extension JY_BaseController {
     }
 }
 
-extension JY_BaseController {
+extension JY_Base_Controller {
     private func yq_show_request_loading() {
         yq_content_view.isHidden = true
         yq_request_loading_view.yq_show_loading()
@@ -140,7 +142,7 @@ extension JY_BaseController {
     }
 }
 
-extension JY_BaseController {
+extension JY_Base_Controller {
     private func yq_controller_status_change() {
         yq_status_view.yq_set(status: yq_controller_status)
         
@@ -158,7 +160,7 @@ extension JY_BaseController {
     }
 }
 
-public extension JY_BaseController {
+public extension JY_Base_Controller {
     static func yq_ID() -> String {
         return "\(self)"
     }
