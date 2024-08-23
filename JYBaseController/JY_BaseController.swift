@@ -11,7 +11,7 @@ import JYScreen
 open class JY_Base_Controller: UIViewController {
 
     //  状态栏颜色
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
         get {
             return .lightContent
         }
