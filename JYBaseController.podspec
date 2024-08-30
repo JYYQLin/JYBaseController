@@ -12,4 +12,6 @@ Pod::Spec.new do |spec|
 
 	spec.dependency "JYScreen"
 	spec.dependency "JYExtension"
+	spec.dependency "JY_Localization_Tool"
+
 end
