@@ -73,7 +73,7 @@ extension JY_Status_View {
         
         yq_status_label.frame.origin = {
             yq_status_label.text = yq_controller_status_string(status: yq_status)
-            yq_status_label.textColor = UIColor(displayP3Red: 155, green: 155, blue: 170, alpha: 1)
+            yq_status_label.textColor = UIColor(named: "yq_base_status_label_textColor")
             yq_status_label.font = UIFont.systemFont(ofSize: 12 * yq_scale)
             
             yq_status_label.frame.size.width = yq_icon_imageView.frame.width + 50 * yq_scale
