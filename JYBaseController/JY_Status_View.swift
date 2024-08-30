@@ -114,7 +114,7 @@ extension JY_Status_View {
         }
         
         else if status == .yq_no_message {
-            return "yq_icon_yq_no_comment"
+            return "yq_icon_yq_no_message"
         }
         
         else if status == .yq_no_comment {
