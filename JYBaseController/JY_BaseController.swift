@@ -143,9 +143,9 @@ extension JY_Base_Controller {
 }
 
 extension JY_Base_Controller {
-    private func yq_controller_status_change(iconName: String? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
+    private func yq_controller_status_change(iconName: String? = nil, iconSize: CGSize? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
         
-        yq_status_view.yq_set(status: yq_controller_status, iconName: iconName, statusText: statusText,  statusTextColor: statusTextColor, statusFont: statusFont)
+        yq_status_view.yq_set(status: yq_controller_status, iconName: iconName, iconSize: iconSize, statusText: statusText,  statusTextColor: statusTextColor, statusFont: statusFont)
         
         if yq_controller_status == JY_Enum_BaseController_Status.yq_first_request {
             yq_show_request_loading()
@@ -165,10 +165,10 @@ extension JY_Base_Controller {
         }
     }
     
-    public func yq_controller_status_other(iconName: String? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
+    public func yq_controller_status_other(iconName: String? = nil, iconSize: CGSize? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
         
         yq_controller_status = .yq_other
-        yq_controller_status_change(iconName: iconName, statusText: statusText, statusTextColor: statusTextColor, statusFont: statusFont)
+        yq_controller_status_change(iconName: iconName, iconSize: iconSize, statusText: statusText, statusTextColor: statusTextColor, statusFont: statusFont)
     }
 }
 

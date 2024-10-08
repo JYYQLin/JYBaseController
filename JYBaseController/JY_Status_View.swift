@@ -15,8 +15,9 @@ class JY_Status_View: UIView {
     private lazy var yq_status: JY_Enum_BaseController_Status = .yq_default
     
     private lazy var yq_iconName: String? = nil
-    private lazy var yq_statusText: String? = nil
+    private lazy var yq_iconSize: CGSize? = nil
     
+    private lazy var yq_statusText: String? = nil
     private lazy var yq_statusTextColor: UIColor? = nil
     private lazy var yq_statusFont: UIFont? = nil
 
@@ -57,12 +58,13 @@ extension JY_Status_View {
         }
     }
     
-    func yq_set(status: JY_Enum_BaseController_Status, iconName: String? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
+    func yq_set(status: JY_Enum_BaseController_Status, iconName: String? = nil, iconSize: CGSize? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
         yq_status = status
         yq_statusText = statusText
         yq_iconName = iconName
         yq_statusFont = statusFont
         yq_statusTextColor = statusTextColor
+        yq_iconSize = iconSize
         
         isHidden = status == .yq_default || status == .yq_first_request || status == .yq_data_loaded
         
@@ -82,7 +84,12 @@ extension JY_Status_View {
                 yq_icon_imageView.image = UIImage(named: yq_iconName!)
             }
             
-            yq_icon_imageView.frame.size = CGSize(width: 140 * yq_scale, height: 140 * yq_scale)
+            if yq_iconSize == nil {
+                yq_icon_imageView.frame.size = CGSize(width: 140 * yq_scale, height: 140 * yq_scale)
+            }
+            else{
+                yq_icon_imageView.frame.size = yq_iconSize!
+            }
             
             return CGPoint(x: (frame.width - yq_icon_imageView.frame.width) * 0.5, y: (frame.height * 0.5 - yq_icon_imageView.frame.height))
         }()
