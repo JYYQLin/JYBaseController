@@ -13,6 +13,12 @@ class JY_Status_View: UIView {
     var yq_retry_request_ClickBlock: (() -> Void)?
     
     private lazy var yq_status: JY_Enum_BaseController_Status = .yq_default
+    
+    private lazy var yq_iconName: String? = nil
+    private lazy var yq_statusText: String? = nil
+    
+    private lazy var yq_statusTextColor: UIColor? = nil
+    private lazy var yq_statusFont: UIFont? = nil
 
     private lazy var yq_icon_imageView: UIImageView = UIImageView()
     
@@ -51,8 +57,12 @@ extension JY_Status_View {
         }
     }
     
-    func yq_set(status: JY_Enum_BaseController_Status) {
+    func yq_set(status: JY_Enum_BaseController_Status, iconName: String? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
         yq_status = status
+        yq_statusText = statusText
+        yq_iconName = iconName
+        yq_statusFont = statusFont
+        yq_statusTextColor = statusTextColor
         
         isHidden = status == .yq_default || status == .yq_first_request || status == .yq_data_loaded
         
@@ -65,7 +75,12 @@ extension JY_Status_View {
         super.layoutSubviews()
         
         yq_icon_imageView.frame.origin = {
-            yq_icon_imageView.image = UIImage(named: yq_status_imageName(status: yq_status))
+            
+            if yq_iconName == nil {
+                yq_icon_imageView.image = UIImage(named: yq_status_imageName(status: yq_status))
+            }else{
+                yq_icon_imageView.image = UIImage(named: yq_iconName!)
+            }
             
             yq_icon_imageView.frame.size = CGSize(width: 140 * yq_scale, height: 140 * yq_scale)
             
@@ -73,9 +88,28 @@ extension JY_Status_View {
         }()
         
         yq_status_label.frame.origin = {
-            yq_status_label.text = yq_controller_status_string(status: yq_status).yq_localized(languageType: yq_localized_manager.yq_current_language)
-            yq_status_label.textColor = UIColor(named: "yq_base_status_label_textColor")
-            yq_status_label.font = UIFont.systemFont(ofSize: 12 * yq_scale)
+            
+            if yq_statusText == nil {
+                yq_status_label.text = yq_controller_status_string(status: yq_status).yq_localized(languageType: yq_localized_manager.yq_current_language)
+            }else{
+                yq_status_label.text = yq_statusText!
+            }
+            
+            
+            if yq_statusTextColor == nil {
+                yq_status_label.textColor = UIColor(named: "yq_base_status_label_textColor")
+            }
+            else{
+                yq_status_label.textColor = yq_statusTextColor!
+            }
+            
+            
+            if yq_statusFont == nil {
+                yq_status_label.font = UIFont.systemFont(ofSize: 12 * yq_scale)
+            }
+            else{
+                yq_status_label.font = yq_statusFont!
+            }
             
             yq_status_label.frame.size.width = yq_icon_imageView.frame.width + 50 * yq_scale
             yq_status_label.sizeToFit()

@@ -19,4 +19,6 @@ public enum JY_Enum_BaseController_Status: String {
     case yq_no_message = "yq_no_message"
     case yq_no_data = "yq_no_data"
     case yq_no_comment = "yq_no_comment"
+    
+    case yq_other = "yq_other"
 }

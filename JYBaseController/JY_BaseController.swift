@@ -143,8 +143,9 @@ extension JY_Base_Controller {
 }
 
 extension JY_Base_Controller {
-    private func yq_controller_status_change() {
-        yq_status_view.yq_set(status: yq_controller_status)
+    private func yq_controller_status_change(iconName: String? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
+        
+        yq_status_view.yq_set(status: yq_controller_status, iconName: iconName, statusText: statusText,  statusTextColor: statusTextColor, statusFont: statusFont)
         
         if yq_controller_status == JY_Enum_BaseController_Status.yq_first_request {
             yq_show_request_loading()
@@ -156,7 +157,18 @@ extension JY_Base_Controller {
             
             yq_request_loading_view.yq_hidden_loading()
             yq_content_view.isHidden = true
+            
+        }else if yq_controller_status == .yq_other {
+            
+            yq_request_loading_view.yq_hidden_loading()
+            yq_content_view.isHidden = true
         }
+    }
+    
+    public func yq_controller_status_other(iconName: String? = nil, statusText: String? = nil, statusTextColor: UIColor? = nil, statusFont: UIFont? = nil) {
+        
+        yq_controller_status = .yq_other
+        yq_controller_status_change(iconName: iconName, statusText: statusText, statusTextColor: statusTextColor, statusFont: statusFont)
     }
 }
 
